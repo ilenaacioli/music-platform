@@ -27,20 +27,6 @@ exports.up = function (knex) {
         table.integer('duration') 
         table.timestamps(true, true)
       })
-      .createTable('favorites', (table) => {
-        table.increments('id').primary()
-        table
-          .integer('userId')
-          .unsigned()
-          .references('id')
-          .inTable('users')
-        table
-          .integer('musicId')
-          .unsigned()
-          .references('id')
-          .inTable('music')
-        table.timestamps(true, true)
-      })
   }
   
   exports.down = function (knex) {
