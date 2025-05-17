@@ -1,10 +1,14 @@
-const express = require('express');
-const app = express();
-const playlistRoutes = require('./routes/playlists');
+import express, { json } from 'express'
 
-app.use(express.json());
-app.use('/playlists', playlistRoutes);
+const app = express()
 
-app.listen(5000, () => {
-  console.log('API rodando na porta 5000');
-});
+import userRoutes from './routes/user.js'
+import playlistRoutes from './routes/playlists.js' 
+app.use(json())
+app.use(userRoutes)
+app.use(playlistRoutes)
+
+const PORT = 5000
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`)
+})

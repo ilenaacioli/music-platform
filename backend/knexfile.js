@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   development: {
     client: 'mysql2',
     connection: {
@@ -14,4 +14,4 @@ module.exports = {
       directory: './src/seeds'
     }
   }
-};
+}
