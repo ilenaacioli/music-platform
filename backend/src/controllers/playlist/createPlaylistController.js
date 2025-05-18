@@ -9,7 +9,7 @@ export class CreatePlaylistController {
     return Joi.object()
       .keys({
         name: Joi.string().required(),
-        description: Joi.string().allow('',null),
+        description: Joi.string().allow('', null),
         editable: Joi.boolean().required(),
       })
       .required()
@@ -17,17 +17,19 @@ export class CreatePlaylistController {
   }
 
   handle = async (request, response) => {
-
     try {
-        await this.validateBody(request.body)
-        const { name, description, editable } = request.body
-    
-        const data = await this.createPlaylistUsecase.create(name, description, editable)
-    
-        response.status(200).json({ data: data })
-      } catch (error) {
-        response.status(400).json({ errorMessage: error.message })
-      }
-    
+      await this.validateBody(request.body)
+      const { name, description, editable } = request.body
+
+      const data = await this.createPlaylistUsecase.create(
+        name,
+        description,
+        editable
+      )
+
+      response.status(200).json({ data: data })
+    } catch (error) {
+      response.status(400).json({ errorMessage: error.message })
+    }
   }
 }

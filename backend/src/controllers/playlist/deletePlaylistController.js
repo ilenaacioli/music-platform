@@ -1,14 +1,14 @@
 import Joi from 'joi'
 
-export class GetPlaylistsController {
-  constructor(getPlaylistsUsecase) {
-    this.getPlaylistsUsecase = getPlaylistsUsecase
+export class DeletePlaylistController {
+  constructor(deletePlaylistUsecase) {
+    this.deletePlaylistUsecase = deletePlaylistUsecase
   }
 
   validateBody = async (body) => {
     return Joi.object()
       .keys({
-        name: Joi.string().optional(),
+        id: Joi.string().required(),
       })
       .required()
       .validateAsync(body)
@@ -16,10 +16,10 @@ export class GetPlaylistsController {
 
   handle = async (request, response) => {
     try {
-      await this.validateBody(request.query)
-      const { name } = request.query
+      await this.validateBody(request.params)
+      const { id } = request.params
 
-      const data = await this.getPlaylistsUsecase.getList(name)
+      const data = await this.deletePlaylistUsecase.delete(id)
 
       response.status(200).json({ data: data })
     } catch (error) {
