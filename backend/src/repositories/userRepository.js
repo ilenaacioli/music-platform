@@ -1,17 +1,15 @@
-import db from "../db.js"
+import db from '../db.js'
 
 export class UserRepository {
-    constructor(
-    ) {}
+  constructor() {}
 
-    getByEmail = async (email) => {
-      const user = await db('users').where({email}).first()
-      return user
-    }
+  getByEmail = async (email) => {
+    const user = await db('users').where({ email }).first()
+    return user
+  }
 
-    create = async (email,name, password) => {
+  create = async (email, name, password) => {
     const user = await db('users').insert({ email, name, password })
     return user
-    }
-
   }
+}
