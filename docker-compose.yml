@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   backend:
     build: ./backend
@@ -8,11 +6,8 @@ services:
       - /app/node_modules
     ports:
       - '5000:5000'
-    environment:
-      - DB_HOST=db
-      - DB_USER=root
-      - DB_PASSWORD=root
-      - DB_NAME=musicdb
+    env_file:
+      - .env
     depends_on:
       - db
     command: npm run dev
@@ -32,8 +27,8 @@ services:
     ports:
       - '3306:3306'
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: musicdb
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
     volumes:
       - mysql_data:/var/lib/mysql
 

@@ -1,21 +1,23 @@
 {
   "name": "music-backend",
+  "type": "module",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "migrate": "knex migrate:latest",
-    "seed": "knex seed:run"
+    "migrate": "knex migrate:latest --knexfile knexfile.mjs",
+    "seed": "knex seed:run --knexfile knexfile.mjs",
+    "migrate:rollback": "knex migrate:rollback --knexfile knexfile.mjs"
   },
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "express": "^4.18.2",
-    "knex": "^2.5.1",
-    "mysql2": "^3.5.2",
     "joi": "^17.9.2",
-    "cors": "^2.8.5"
+    "knex": "^2.5.1",
+    "mysql2": "^3.5.2"
   },
   "devDependencies": {
     "nodemon": "^3.0.2"
-  },
-  "type": "module"
+  }
 }

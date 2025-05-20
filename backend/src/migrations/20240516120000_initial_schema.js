@@ -11,7 +11,7 @@ export async function up(knex) {
       table.increments('id').primary()
       table.string('name').notNullable()
       table.text('description')
-      table.boolean('editable').notNullable().defaultTo(false)
+      table.boolean('editable').notNullable().defaultTo(true)
       table.timestamps(true, true)
     })
     .createTable('musics', (table) => {
@@ -27,22 +27,6 @@ export async function up(knex) {
         .inTable('playlists')
         .onDelete('SET NULL')
       table.integer('duration')
-      table.timestamps(true, true)
-    })
-    .createTable('favorites', (table) => {
-      table.increments('id').primary()
-      table
-        .integer('userId')
-        .unsigned()
-        .references('id')
-        .inTable('users')
-        .onDelete('CASCADE')
-      table
-        .integer('musicId')
-        .unsigned()
-        .references('id')
-        .inTable('musics')
-        .onDelete('CASCADE')
       table.timestamps(true, true)
     })
 }
