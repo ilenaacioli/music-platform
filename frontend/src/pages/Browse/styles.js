@@ -66,10 +66,11 @@ export const Title = styled(Typography)({
   fontSize: '2rem',
   fontWeight: 'bold',
   color: '#1b1b1b',
+  textTransform: 'uppercase',
 })
 
 export const Description = styled(Typography)({
-  fontSize: '1rem',
+  fontSize: '1.5rem',
   color: '#333',
 })
 
