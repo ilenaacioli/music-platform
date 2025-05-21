@@ -12,6 +12,7 @@ export async function up(knex) {
       table.string('name').notNullable()
       table.text('description')
       table.boolean('editable').notNullable().defaultTo(true)
+      table.integer('userId').unsigned().references('id').inTable('users')
       table.timestamps(true, true)
     })
     .createTable('musics', (table) => {
@@ -25,7 +26,6 @@ export async function up(knex) {
         .unsigned()
         .references('id')
         .inTable('playlists')
-        .onDelete('SET NULL')
       table.integer('duration')
       table.timestamps(true, true)
     })

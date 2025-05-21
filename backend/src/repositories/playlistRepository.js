@@ -40,7 +40,7 @@ export class PlaylistRepository {
       if (row.musicId) {
         playlistsMap[row.playlistId].musics.push({
           id: row.musicId,
-          title: row.musicTitle,
+          name: row.musicTitle,
           artist: row.artist,
           duration: row.duration,
           url: row.url,
@@ -52,10 +52,11 @@ export class PlaylistRepository {
     return Object.values(playlistsMap)
   }
 
-  create = async (name, description, editable) => {
+  create = async (name, description, userId, editable) => {
     const playlists = await db('playlists').insert({
       name,
       description,
+      userId,
       editable,
     })
     return playlists
@@ -69,9 +70,12 @@ export class PlaylistRepository {
   getById = async (id) => {
     const playlist = await db('playlists')
       .select(
-        'playlists.*',
+        'playlists.id as playlistId',
+        'playlists.name as playlistName',
+        'playlists.description',
+        'playlists.editable',
         'musics.id as musicId',
-        'musics.title',
+        'musics.name as musicTitle',
         'musics.artist',
         'musics.duration',
         'musics.url',
@@ -82,13 +86,12 @@ export class PlaylistRepository {
 
     if (playlist.length === 0) return null
 
-    // Estrutura os dados para agrupar as músicas dentro da playlist
-    const { name, description, editable } = playlist[0]
+    const { playlistName, description, editable } = playlist[0]
     const musics = playlist
       .filter((row) => row.musicId !== null)
       .map((row) => ({
         id: row.musicId,
-        title: row.title,
+        name: row.musicTitle,
         artist: row.artist,
         duration: row.duration,
         url: row.url,
@@ -97,7 +100,7 @@ export class PlaylistRepository {
 
     return {
       id,
-      name,
+      name: playlistName,
       description,
       editable,
       musics,

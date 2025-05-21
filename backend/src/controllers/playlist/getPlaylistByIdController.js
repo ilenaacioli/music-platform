@@ -1,14 +1,14 @@
 import Joi from 'joi'
 
-export class GetByEmailController {
-  constructor(getByEmailUsecase) {
-    this.getByEmailUsecase = getByEmailUsecase
+export class GetPlaylistByIdController {
+  constructor(getPlaylistByIdUsecase) {
+    this.getPlaylistByIdUsecase = getPlaylistByIdUsecase
   }
 
   validateBody = async (body) => {
     return Joi.object()
       .keys({
-        email: Joi.string().required(),
+        id: Joi.string().required(),
       })
       .required()
       .validateAsync(body)
@@ -16,10 +16,10 @@ export class GetByEmailController {
 
   handle = async (request, response) => {
     try {
-      const { email } = request.query
-      await this.validateBody({ email })
+      await this.validateBody(request.params)
+      const { id } = request.params
 
-      const data = await this.getByEmailUsecase.getByEmail(email)
+      const data = await this.getPlaylistByIdUsecase.getById(id)
 
       response.status(200).json({ data: data })
     } catch (error) {

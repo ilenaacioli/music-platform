@@ -11,6 +11,7 @@ export class CreatePlaylistController {
         name: Joi.string().required(),
         description: Joi.string().allow('', null),
         editable: Joi.boolean().required(),
+        userId: Joi.number().required(),
       })
       .required()
       .validateAsync(body)
@@ -19,11 +20,12 @@ export class CreatePlaylistController {
   handle = async (request, response) => {
     try {
       await this.validateBody(request.body)
-      const { name, description, editable } = request.body
+      const { name, description, userId, editable } = request.body
 
       const data = await this.createPlaylistUsecase.create(
         name,
         description,
+        userId,
         editable
       )
 

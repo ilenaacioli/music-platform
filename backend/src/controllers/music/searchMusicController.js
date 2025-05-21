@@ -9,6 +9,7 @@ export class SearchMusicController {
     return Joi.object()
       .keys({
         name: Joi.string().required(),
+        updateUrl: Joi.boolean().required(),
       })
       .required()
       .validateAsync(body)
@@ -16,12 +17,12 @@ export class SearchMusicController {
 
   handle = async (request, response) => {
     try {
-      await this.validateBody(request.query)
-      const { name } = request.query
+      await this.validateBody(request.body)
+      const { name, updateUrl } = request.body
 
-      const data = await this.searchMusicUsecase.search(name)
+      const data = await this.searchMusicUsecase.search(name, updateUrl)
 
-      response.status(200).json({ data: data.data })
+      response.status(200).json({ data: data })
     } catch (error) {
       response.status(400).json({ errorMessage: error.message })
     }

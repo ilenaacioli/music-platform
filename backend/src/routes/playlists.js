@@ -10,8 +10,19 @@ import { EditPlaylistUsecase } from '../usecases/playlist/editPlaylistUsecase.js
 import { EditPlaylistController } from '../controllers/playlist/editPlaylistController.js'
 import { DeletePlaylistUsecase } from '../usecases/playlist/deletePlaylistUsecase.js'
 import { DeletePlaylistController } from '../controllers/playlist/deletePlaylistController.js'
+import { GetPlaylistByIdUsecase } from '../usecases/playlist/getPlaylistByIdUsecase.js'
+import { GetPlaylistByIdController } from '../controllers/playlist/getPlaylistByIdController.js'
 
 const playlistRepository = new PlaylistRepository()
+
+// GET /playlist
+const getPlaylistByIdUsecase = new GetPlaylistByIdUsecase(playlistRepository)
+const getPlaylistByIdController = new GetPlaylistByIdController(
+  getPlaylistByIdUsecase
+)
+router.get('/playlist/:id', (req, res) =>
+  getPlaylistByIdController.handle(req, res)
+)
 
 // GET /playlist
 const getPlaylistsUsecase = new GetPlaylistsUsecase(playlistRepository)

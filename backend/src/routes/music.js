@@ -13,10 +13,10 @@ import { DeleteMusicFromPlaylistController } from '../controllers/music/deleteMu
 const musicRepository = new MusicRepository()
 const playlistRepository = new PlaylistRepository()
 
-// GET /music
+// PUT /music
 const searchMusicUsecase = new SearchMusicUsecase(musicRepository)
 const searchMusicController = new SearchMusicController(searchMusicUsecase)
-router.get('/music', (req, res) => searchMusicController.handle(req, res))
+router.put('/music', (req, res) => searchMusicController.handle(req, res))
 
 // POST /music
 const addMusicToPlaylistUsecase = new AddMusicToPlaylistUsecase(

@@ -3,10 +3,11 @@ export class CreatePlaylistUsecase {
     this.playlistRepository = playlistRepository
   }
 
-  create = async (name, description, editable) => {
+  create = async (name, description, userId, editable) => {
     const createdPlaylist = await this.playlistRepository.create(
       name,
       description,
+      userId,
       editable
     )
     return createdPlaylist

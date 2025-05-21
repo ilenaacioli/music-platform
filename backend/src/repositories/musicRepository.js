@@ -23,4 +23,15 @@ export class MusicRepository {
   delete = async (id, playlistId) => {
     await db('musics').delete().where({ id, playlistId })
   }
+
+  getByName = async (name) => {
+    const music = await db('musics').where({ name }).first()
+    return music
+  }
+
+  updateMusicUrl = async (id, url) => {
+    await db('musics').where({ id }).update({ url })
+
+    return this.getById(id)
+  }
 }
