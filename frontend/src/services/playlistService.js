@@ -65,7 +65,27 @@ export async function getPlaylistById(id) {
 
     return result.data
   } catch (error) {
-    console.log('Erro ao buscar playlists:', error)
+    console.log('Erro ao buscar playlist:', error)
+    throw error
+  }
+}
+
+export async function deletePlaylistById(id) {
+  const url = API_URL + `/${id}`
+
+  try {
+    const response = await fetch(url.toString(), {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
+    const result = await response.json()
+
+    return result.data
+  } catch (error) {
+    console.log('Erro ao deletar playlists:', error)
     throw error
   }
 }

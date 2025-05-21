@@ -58,3 +58,27 @@ export async function addToPlaylist(
     throw error
   }
 }
+
+export async function deleteFromPlaylist(id, playlistId) {
+  const url = API_URL
+
+  try {
+    const response = await fetch(url.toString(), {
+      method: 'DELETE',
+      body: JSON.stringify({
+        id,
+        playlistId,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
+    const result = await response.json()
+
+    return result.data
+  } catch (error) {
+    console.log('Erro ao deletar música:', error)
+    throw error
+  }
+}

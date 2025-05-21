@@ -82,3 +82,17 @@ export const RightPanel = styled(Box)({
   maxHeight: '60vh',
   overflowY: 'auto',
 })
+
+export const DeleteButton = styled(Button)({
+  backgroundColor: '#e53935',
+  color: '#fff',
+
+  '&:hover': {
+    backgroundColor: '#b71c1c',
+  },
+})
+
+export const ButtonGroup = styled(Box)({
+  display: 'flex',
+  gap: '8px',
+})

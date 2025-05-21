@@ -27,7 +27,7 @@ export const MusicInfo = styled(Typography)({
 })
 
 export const PlayButton = styled('button')({
-  backgroundColor: '#42C8AE',
+  //backgroundColor: '#42C8AE',
   color: 'white',
   border: 'none',
   borderRadius: '8px',
@@ -38,4 +38,24 @@ export const PlayButton = styled('button')({
   '&:hover': {
     backgroundColor: '#36a893',
   },
+})
+
+export const DeleteButton = styled('button')({
+  backgroundColor: '#e53935',
+  color: 'white',
+  border: 'none',
+  borderRadius: '8px',
+  padding: '8px 12px',
+  fontWeight: 'bold',
+  cursor: 'pointer',
+  transition: 'background-color 0.2s ease',
+  '&:hover': {
+    backgroundColor: '#c62828',
+  },
+})
+
+export const ButtonGroup = styled(Box)({
+  display: 'flex',
+  gap: '8px',
+  alignItems: 'center',
 })

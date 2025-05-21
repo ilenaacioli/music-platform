@@ -1,6 +1,16 @@
 import React, { useState, useRef } from 'react'
-import { MusicBox, MusicTitle, MusicInfo, PlayButton, MusicRow } from './styles'
+import {
+  MusicBox,
+  MusicTitle,
+  MusicInfo,
+  MusicRow,
+  ButtonGroup,
+} from './styles'
 import { searchMusic } from '../../services/musicService'
+import IconButton from '@mui/material/IconButton'
+import DeleteIcon from '@mui/icons-material/Delete'
+import PauseIcon from '@mui/icons-material/Pause'
+import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 
 let currentlyPlayingAudio = null
 
@@ -10,7 +20,7 @@ const formatDuration = (durationInSeconds) => {
   return `${minutes}:${seconds.toString().padStart(2, '0')}`
 }
 
-const Music = ({ name, artist, duration }) => {
+const Music = ({ name, artist, duration, onDelete }) => {
   const [audioUrl, setAudioUrl] = useState(null)
   const audioRef = useRef(null)
 
@@ -39,6 +49,12 @@ const Music = ({ name, artist, duration }) => {
     }
   }
 
+  const handlePause = () => {
+    if (audioRef.current && !audioRef.current.paused) {
+      audioRef.current.pause()
+    }
+  }
+
   const formattedDuration =
     typeof duration === 'number' ? formatDuration(duration) : duration
 
@@ -51,7 +67,20 @@ const Music = ({ name, artist, duration }) => {
             {artist} • {formattedDuration}
           </MusicInfo>
         </div>
-        <PlayButton onClick={handlePlay}>▶️</PlayButton>
+
+        <ButtonGroup>
+          <IconButton aria-label="play" onClick={handlePlay}>
+            <PlayArrowIcon />
+          </IconButton>
+          <IconButton aria-label="pause" onClick={handlePause}>
+            <PauseIcon />
+          </IconButton>
+          {onDelete && (
+            <IconButton aria-label="delete" onClick={onDelete}>
+              <DeleteIcon />
+            </IconButton>
+          )}
+        </ButtonGroup>
       </MusicRow>
       <audio ref={audioRef} src={audioUrl} style={{ display: 'none' }} />
     </MusicBox>
