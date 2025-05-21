@@ -1,30 +1,24 @@
-# Projeto Fullstack Music App (Frontend + Backend + Banco) com Docker
+# 🎶 Projeto de Aplicativo de Playlists de Música Nordestina
 
-Este projeto contém um backend Node.js com Express, MySQL e Knex para banco, e um frontend React, todos rodando em containers Docker orquestrados via Docker Compose.
+Este é um aplicativo fullstack de gerenciamento de playlists musicais com foco na música nordestina. Ele permite que os usuários explorem, criem, editem e excluam playlists personalizadas, bem como adicionem ou removam faixas individuais. A interface é moderna, colorida e responsiva, com uma experiência voltada para a simplicidade e usabilidade.
 
----
+## 🔧 Tecnologias Utilizadas
 
-## Estrutura do projeto
+- **Frontend**: React + Vite, com Emotion e MUI v5 para estilização
+- **Backend**: Node.js + Express, utilizando Knex.js para ORM
+- **Banco de Dados**: MySQL
+- **Docker**: Containers para o ambiente de desenvolvimento e banco
+- **Testes**: Jest no frontend e backend
+- **ESModules**: Projeto totalmente em ESModules (`type: "module"` no `package.json`)
 
-```
-/
-├── backend/         # Backend Node.js
-│   ├── Dockerfile
-│   ├── package.json
-│   ├── knexfile.mjs
-│   ├── .env         # Variáveis para backend (DB_HOST, DB_USER, etc)
-│   └── src/
-│       ├── migrations/
-│       └── seeds/
-├── frontend/        # Frontend React
-│   ├── Dockerfile
-│   ├── package.json
-│   └── src/
-├── docker-compose.yml
-└── .env             # Variáveis para Docker Compose (DB configs)
-```
+## 💡 Funcionalidades
 
----
+- Visualização de playlists com capas dinâmicas
+- Reprodução e pausa de músicas com integração à API de busca musical
+- Criação e exclusão de playlists com confirmação por modal
+- Adição e remoção de músicas individuais
+- Redirecionamentos automáticos após ações (ex: exclusão de playlist)
+- Layout responsivo e otimizado para usabilidade
 
 ## Pré-requisitos
 
@@ -92,6 +86,12 @@ Senha: user@test
 
 - Frontend: docker-compose --profile test up frontend-test
 - Backend: docker-compose run --rm backend npm run test
+
+---
+
+## Documentação endpoints
+
+- Postman: https://documenter.getpostman.com/view/21552877/2sB2qZG3Uy#cf2df9ea-41b5-4a04-9cc4-d5a9b50c693b
 
 ---
 

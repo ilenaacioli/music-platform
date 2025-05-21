@@ -11,6 +11,6 @@ export class CreateUserUsecase {
     }
 
     const user = await this.userRepository.create(email, name, password)
-    return user
+    return 'User created with success'
   }
 }

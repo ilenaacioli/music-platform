@@ -3,8 +3,10 @@ export class EditPlaylistUsecase {
     this.playlistRepository = playlistRepository
   }
 
-  edit = async (name, description, editable, id) => {
-    const updateData = {}
+  edit = async (name, description, editable, id, userId) => {
+    const updateData = {
+      userId,
+    }
 
     if (name !== undefined) updateData.name = name
     if (description !== undefined) updateData.description = description
@@ -15,6 +17,6 @@ export class EditPlaylistUsecase {
     }
 
     const createdPlaylist = await this.playlistRepository.edit(updateData, id)
-    return createdPlaylist
+    return 'Playlist edited with suceess'
   }
 }

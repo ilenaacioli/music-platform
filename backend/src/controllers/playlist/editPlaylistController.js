@@ -12,6 +12,7 @@ export class EditPlaylistController {
         description: Joi.string().allow('', null),
         editable: Joi.boolean(),
         id: Joi.number().required(),
+        userId: Joi.number().required(),
       })
       .required()
       .validateAsync(body)
@@ -20,13 +21,14 @@ export class EditPlaylistController {
   handle = async (request, response) => {
     try {
       await this.validateBody(request.body)
-      const { name, description, editable, id } = request.body
+      const { name, description, editable, id, userId } = request.body
 
       const data = await this.editPlaylistUsecase.edit(
         name,
         description,
         editable,
-        id
+        id,
+        userId
       )
 
       response.status(200).json({ data: data })

@@ -20,6 +20,6 @@ export class AddMusicToPlaylistUsecase {
       cover
     )
 
-    return music
+    return 'Music added with success'
   }
 }

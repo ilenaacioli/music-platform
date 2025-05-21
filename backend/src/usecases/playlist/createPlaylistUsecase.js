@@ -10,6 +10,6 @@ export class CreatePlaylistUsecase {
       userId,
       editable
     )
-    return createdPlaylist
+    return 'Playlist created with suceess'
   }
 }
