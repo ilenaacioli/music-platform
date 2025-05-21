@@ -1,6 +1,10 @@
-# 🎶 Projeto de Aplicativo de Playlists de Música Nordestina
+# 🎶 Projeto de Plataforma musical
 
-Este é um aplicativo fullstack de gerenciamento de playlists musicais com foco na música nordestina. Ele permite que os usuários explorem, criem, editem e excluam playlists personalizadas, bem como adicionem ou removam faixas individuais. A interface é moderna, colorida e responsiva, com uma experiência voltada para a simplicidade e usabilidade.
+Este é um aplicativo fullstack de gerenciamento de playlists musicais. Ele permite que os usuários explorem, criem, editem e excluam playlists personalizadas, bem como adicionem ou removam faixas individuais. A interface é moderna, colorida e responsiva, com uma experiência voltada para a simplicidade e usabilidade.
+
+## APIs Utilizadas
+
+- 🎵 **Deezer API** — Utilizada para buscar informações sobre músicas, capas de álbuns e prévias de áudio utilizadas nas playlists.
 
 ## 🔧 Tecnologias Utilizadas
 
@@ -18,7 +22,6 @@ Este é um aplicativo fullstack de gerenciamento de playlists musicais com foco 
 - Criação e exclusão de playlists com confirmação por modal
 - Adição e remoção de músicas individuais
 - Redirecionamentos automáticos após ações (ex: exclusão de playlist)
-- Layout responsivo e otimizado para usabilidade
 
 ## Pré-requisitos
 
