@@ -34,4 +34,8 @@ export class MusicRepository {
 
     return this.getById(id)
   }
+
+  deleteFromPlaylist = async (playlistId) => {
+    await db('musics').delete().where({ playlistId })
+  }
 }

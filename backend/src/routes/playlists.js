@@ -12,8 +12,10 @@ import { DeletePlaylistUsecase } from '../usecases/playlist/deletePlaylistUsecas
 import { DeletePlaylistController } from '../controllers/playlist/deletePlaylistController.js'
 import { GetPlaylistByIdUsecase } from '../usecases/playlist/getPlaylistByIdUsecase.js'
 import { GetPlaylistByIdController } from '../controllers/playlist/getPlaylistByIdController.js'
+import { MusicRepository } from '../repositories/musicRepository.js'
 
 const playlistRepository = new PlaylistRepository()
+const musicRepository = new MusicRepository()
 
 // GET /playlist
 const getPlaylistByIdUsecase = new GetPlaylistByIdUsecase(playlistRepository)
@@ -44,7 +46,10 @@ const editPlaylistController = new EditPlaylistController(editPlaylistUsecase)
 router.put('/playlist', (req, res) => editPlaylistController.handle(req, res))
 
 // DELETE /playlist
-const deletePlaylistUsecase = new DeletePlaylistUsecase(playlistRepository)
+const deletePlaylistUsecase = new DeletePlaylistUsecase(
+  playlistRepository,
+  musicRepository
+)
 const deletePlaylistController = new DeletePlaylistController(
   deletePlaylistUsecase
 )

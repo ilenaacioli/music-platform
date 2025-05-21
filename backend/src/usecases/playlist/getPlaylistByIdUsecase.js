@@ -4,7 +4,11 @@ export class GetPlaylistByIdUsecase {
   }
 
   getById = async (id) => {
-    const getPlaylists = await this.playlistRepository.getById(id)
-    return getPlaylists
+    const getPlaylist = await this.playlistRepository.getById(id)
+
+    if (!getPlaylist) {
+      throw new Error('Playlist not found')
+    }
+    return getPlaylist
   }
 }

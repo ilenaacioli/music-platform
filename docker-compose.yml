@@ -21,6 +21,15 @@ services:
       - '3000:3000'
     command: npm run dev
 
+  frontend-test:
+    build: ./frontend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: npm test
+    profiles:
+      - test
+
   db:
     image: mysql:8
     restart: always

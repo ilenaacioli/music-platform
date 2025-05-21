@@ -1,6 +1,7 @@
 export class DeletePlaylistUsecase {
-  constructor(playlistRepository) {
+  constructor(playlistRepository, musicRepository) {
     this.playlistRepository = playlistRepository
+    this.musicRepository = musicRepository
   }
 
   delete = async (id) => {
@@ -10,7 +11,7 @@ export class DeletePlaylistUsecase {
       throw new Error('Playlist not found')
     }
 
-    // TODO: DELETE MUSIC BEFORE DELETE PLAYLIST
+    await this.musicRepository.deleteFromPlaylist(id)
 
     await this.playlistRepository.delete(id)
     return 'Playlist deleted with success'
