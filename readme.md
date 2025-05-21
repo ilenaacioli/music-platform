@@ -82,6 +82,17 @@ docker-compose exec backend npm run seed
 - Backend API estará disponível em: `http://localhost:5000`
 - Frontend React estará disponível em: `http://localhost:3000`
 
+Login:
+Email: userTest
+Senha: user@test
+
+---
+
+## Como rodar testes
+
+- Frontend: docker-compose --profile test up frontend-test
+- Backend: docker-compose run --rm backend npm run test
+
 ---
 
 ## Comandos úteis
@@ -110,6 +121,12 @@ docker-compose exec backend sh
 
 ```bash
 docker-compose down -v
+```
+
+### Remover dados e tabelas do banco
+
+```bash
+docker-compose exec backend npm run migrate:rollbak
 ```
 
 ---
