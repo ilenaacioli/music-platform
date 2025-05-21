@@ -78,10 +78,13 @@ docker-compose exec backend npm run seed
 
 - Backend API estará disponível em: `http://localhost:5000`
 - Frontend React estará disponível em: `http://localhost:3000`
+- Login:
 
+```bash
 Login:
 Email: userTest
 Senha: user@test
+```
 
 ---
 
