@@ -143,13 +143,11 @@ docker-compose exec backend npm run migrate:rollbak
 
 ---
 
-## Possíveis melhorias futuras
+## Features futuras
 
-- Automatizar a execução de migrations/seeds na inicialização do backend
-- Configurar HTTPS no frontend/backend
-- Adicionar testes automatizados para backend e frontend
-- Configurar um proxy reverso (NGINX) para unificar frontend/backend em uma só porta
+- Cadastro de usuários
+- Verificações de segurança para acesso das páginas
 
 ---
 
-Se precisar de ajuda para qualquer passo, só avisar! 🚀
+Para dúvidas e sugestões, entre em contado através do email: ilenaaciolids@gmail.com
