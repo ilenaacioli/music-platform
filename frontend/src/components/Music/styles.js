@@ -2,28 +2,40 @@ import styled from '@emotion/styled'
 import { Box, Typography } from '@mui/material'
 
 export const MusicBox = styled(Box)({
-  backgroundColor: '#f5f5f5',
+  backgroundColor: '#f0f0f0',
   padding: '16px',
   borderRadius: '12px',
   marginBottom: '12px',
+  maxWidth: '100%',
+  minWidth: '250px',
+})
+
+export const MusicRow = styled(Box)({
   display: 'flex',
-  flexDirection: 'column',
-  gap: '8px',
-  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+  justifyContent: 'space-between',
+  alignItems: 'center',
 })
 
 export const MusicTitle = styled(Typography)({
-  fontWeight: 'bold',
   fontSize: '18px',
-  color: '#0A2E36',
+  fontWeight: 'bold',
 })
 
 export const MusicInfo = styled(Typography)({
-  color: '#666',
   fontSize: '14px',
+  color: '#666',
 })
 
-export const AudioPlayer = styled('audio')({
-  width: '100%',
-  outline: 'none',
+export const PlayButton = styled('button')({
+  backgroundColor: '#42C8AE',
+  color: 'white',
+  border: 'none',
+  borderRadius: '8px',
+  padding: '8px 12px',
+  fontWeight: 'bold',
+  cursor: 'pointer',
+  transition: 'background-color 0.2s ease',
+  '&:hover': {
+    backgroundColor: '#36a893',
+  },
 })
