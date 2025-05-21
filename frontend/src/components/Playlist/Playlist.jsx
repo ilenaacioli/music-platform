@@ -16,7 +16,12 @@ export default function Playlist({ playlist }) {
       <CoverImage src={getCoverUrl()} alt={playlist.name} />
       <Typography
         variant="h6"
-        sx={{ mt: 1, fontWeight: 'bold', color: '#fff' }}
+        sx={{
+          mt: 1,
+          fontWeight: 'bold',
+          color: '#fff',
+          textTransform: 'uppercase',
+        }}
       >
         {playlist.name}
       </Typography>
