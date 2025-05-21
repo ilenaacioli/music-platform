@@ -4,8 +4,10 @@ WORKDIR /app
 
 COPY package*.json ./
 
+ENV NODE_ENV=development
+
 RUN npm install \
-  && npm install -D @vitejs/plugin-react
+  && npm install -D @vitejs/plugin-react jest-environment-jsdom @testing-library/react @testing-library/jest-dom babel-jest @babel/preset-env @babel/preset-react identity-obj-proxy
 
 COPY . .
 
