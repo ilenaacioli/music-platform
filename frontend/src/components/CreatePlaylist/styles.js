@@ -1,4 +1,3 @@
-// src/components/CreatePlaylist/styles.js
 import styled from '@emotion/styled'
 import {
   Modal,

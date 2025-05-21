@@ -1,4 +1,3 @@
-// src/components/CreatePlaylist/CreatePlaylist.jsx
 import React, { useState } from 'react'
 import {
   StyledModal,
