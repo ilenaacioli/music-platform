@@ -104,8 +104,9 @@ Senha: 3nds83whr0sdofk
 
 ## Como rodar testes
 
-- Frontend: docker-compose --profile test up frontend-test
-- Backend: docker-compose run --rm backend npm run test
+```bash
+docker-compose --profile test up --build
+```
 
 ---
 
