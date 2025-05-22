@@ -39,6 +39,8 @@ DB_HOST=db
 DB_USER=root
 DB_PASSWORD=root
 DB_NAME=musicdb
+FRONTEND_PORT=3000
+BACKEND_PORT=5000
 ```
 
 ### 2. Crie o arquivo `.env` dentro da pasta `backend/` com o mesmo conteúdo:
@@ -48,6 +50,16 @@ DB_HOST=db
 DB_USER=root
 DB_PASSWORD=root
 DB_NAME=musicdb
+FRONTEND_PORT=3000
+BACKEND_PORT=5000
+```
+
+### 3. Crie o arquivo `.env` dentro da pasta `frontend/` com o mesmo conteúdo:
+
+```env
+VITE_BACKEND_PORT=5000
+VITE_FRONTEND_PORT=3000
+VITE_BACKEND_URL=http://localhost:${VITE_BACKEND_PORT}
 ```
 
 ---
@@ -72,17 +84,20 @@ docker-compose exec backend npm run migrate
 docker-compose exec backend npm run seed
 ```
 
+Obs: Dependendo da versão do docker, os comandos devem ser rodados sem o -
+Exemplo: docker compose up --build
+
 ---
 
 ## Como acessar a aplicação
 
-- Backend API estará disponível em: `http://localhost:5000`
-- Frontend React estará disponível em: `http://localhost:3000`
+- Backend API estará disponível em: `http://localhost:${BACKEND_PORT}`
+- Frontend React estará disponível em: `http://localhost:${FRONTEND_PORT}`
 - Login:
 
 ```bash
-Email: userTest
-Senha: user@test
+Email: user@test
+Senha: 3nds83whr0sdofk
 ```
 
 ---
@@ -153,3 +168,11 @@ docker-compose exec backend npm run migrate:rollbak
 ---
 
 Para dúvidas e sugestões, entre em contado através do email: ilenaaciolids@gmail.com
+
+## Imagens
+
+![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image-3.png)
+![alt text](image-4.png)
