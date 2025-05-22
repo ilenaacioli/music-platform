@@ -171,8 +171,9 @@ Para dúvidas e sugestões, entre em contado através do email: ilenaaciolids@gm
 
 ## Imagens
 
-![alt text](image.png)
-![alt text](image-1.png)
-![alt text](image-2.png)
-![alt text](image-3.png)
-![alt text](image-4.png)
+![alt text](./assets/login.png)
+![alt text](./assets/playlist.png)
+![alt text](./assets/playlist-create.png)
+![alt text](./assets/browse.png)
+![alt text](./assets/browse-editable.png)
+![alt text](./assets/search-music.png)
