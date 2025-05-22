@@ -29,6 +29,8 @@ import {
   DialogContentText,
   DialogTitle,
   Button,
+  Snackbar,
+  Alert,
 } from '@mui/material'
 import { deleteFromPlaylist } from '../../services/musicService'
 
@@ -41,10 +43,23 @@ export default function Browse() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false)
 
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: '',
+    severity: 'success',
+  })
+
+  const showSnackbar = (message, severity = 'success') => {
+    setSnackbar({ open: true, message, severity })
+  }
+
+  const handleCloseSnackbar = () => {
+    setSnackbar({ ...snackbar, open: false })
+  }
+
   const fetchPlaylist = async () => {
     try {
       const response = await getPlaylistById(initialPlaylist.id)
-      console.log(response, 'AQUIIII')
       setPlaylist(response)
     } catch (error) {
       console.error('Erro ao buscar playlist atualizada:', error)
@@ -69,9 +84,10 @@ export default function Browse() {
   const handleConfirmDelete = async () => {
     try {
       await deletePlaylistById(playlist.id)
+
       navigate('/playlists')
     } catch (error) {
-      console.error('Erro ao excluir playlist:', error)
+      showSnackbar('Erro ao excluir playlist', 'error')
     }
   }
 
@@ -80,7 +96,7 @@ export default function Browse() {
       await deleteFromPlaylist(musicId, playlist.id)
       fetchPlaylist()
     } catch (error) {
-      console.error('Erro ao remover música da playlist:', error)
+      showSnackbar('Erro ao remover música da playlist', 'error')
     }
   }
 
@@ -134,6 +150,7 @@ export default function Browse() {
               duration={music.duration}
               url={music.url}
               onDelete={() => handleRemoveMusicFromPlaylist(music.id)}
+              editable={playlist?.editable}
             />
           ))}
         </RightPanel>
@@ -163,6 +180,21 @@ export default function Browse() {
           </Button>
         </DialogActions>
       </Dialog>
+
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={3000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity={snackbar.severity}
+          sx={{ width: '100%' }}
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
     </Container>
   )
 }

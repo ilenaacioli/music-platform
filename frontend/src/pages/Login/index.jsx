@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Typography } from '@mui/material'
+import { Typography, Snackbar, Alert } from '@mui/material'
 import {
   LoginContainer,
   LeftSection,
@@ -13,14 +13,27 @@ import { getUserByEmail } from '../../services/userService'
 export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: '',
+    severity: 'success',
+  })
+
+  const showSnackbar = (message, severity = 'success') => {
+    setSnackbar({ open: true, message, severity })
+  }
+
+  const handleCloseSnackbar = () => {
+    setSnackbar({ ...snackbar, open: false })
+  }
 
   const handleLogin = async () => {
     try {
-      await getUserByEmail(email)
+      const response = await getUserByEmail(email)
       localStorage.setItem('userEmail', email)
       window.location.href = '/playlists'
     } catch (error) {
-      console.error('Erro ao fazer login:', error)
+      showSnackbar('Erro ao fazer login: usuário não encontrado', 'error')
     }
   }
 
@@ -55,6 +68,21 @@ export default function Login() {
           </StyledButton>
         </Row>
       </RightSection>
+
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={3000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity={snackbar.severity}
+          sx={{ width: '100%' }}
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
     </LoginContainer>
   )
 }

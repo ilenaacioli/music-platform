@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5000/playlist'
+const API_URL = `${import.meta.env.VITE_BACKEND_URL}/playlist`
 
 export async function getPlaylists(name) {
   let url = API_URL
@@ -43,6 +43,10 @@ export async function create(name, description, userId, editable) {
 
     const result = await response.json()
 
+    if (result.errorMessage) {
+      throw new Error(result.errorMessage)
+    }
+
     return result.data
   } catch (error) {
     console.log('Erro ao criar playlist:', error)
@@ -82,6 +86,10 @@ export async function deletePlaylistById(id) {
     })
 
     const result = await response.json()
+
+    if (result.errorMessage) {
+      throw new Error(result.errorMessage)
+    }
 
     return result.data
   } catch (error) {

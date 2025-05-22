@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5000/music'
+const API_URL = `${import.meta.env.VITE_BACKEND_URL}/music`
 
 export async function searchMusic(name, updateUrl) {
   const url = API_URL
@@ -75,6 +75,10 @@ export async function deleteFromPlaylist(id, playlistId) {
     })
 
     const result = await response.json()
+
+    if (result.errorMessage) {
+      throw new Error(result.errorMessage)
+    }
 
     return result.data
   } catch (error) {

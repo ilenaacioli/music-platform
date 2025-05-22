@@ -20,7 +20,7 @@ const formatDuration = (durationInSeconds) => {
   return `${minutes}:${seconds.toString().padStart(2, '0')}`
 }
 
-const Music = ({ name, artist, duration, onDelete }) => {
+const Music = ({ name, artist, duration, onDelete, editable }) => {
   const [audioUrl, setAudioUrl] = useState(null)
   const audioRef = useRef(null)
 
@@ -42,7 +42,7 @@ const Music = ({ name, artist, duration, onDelete }) => {
             audioRef.current.play()
             currentlyPlayingAudio = audioRef.current
           }
-        }, 70)
+        }, 50)
       }
     } catch (error) {
       console.error('Erro ao buscar e tocar música:', error)
@@ -53,6 +53,17 @@ const Music = ({ name, artist, duration, onDelete }) => {
     if (audioRef.current && !audioRef.current.paused) {
       audioRef.current.pause()
     }
+  }
+
+  const resolveDeleteButton = () => {
+    if (onDelete && editable)
+      return (
+        <IconButton aria-label="delete" onClick={onDelete}>
+          <DeleteIcon />
+        </IconButton>
+      )
+
+    return <></>
   }
 
   const formattedDuration =
@@ -75,11 +86,7 @@ const Music = ({ name, artist, duration, onDelete }) => {
           <IconButton aria-label="pause" onClick={handlePause}>
             <PauseIcon />
           </IconButton>
-          {onDelete && (
-            <IconButton aria-label="delete" onClick={onDelete}>
-              <DeleteIcon />
-            </IconButton>
-          )}
+          {resolveDeleteButton()}
         </ButtonGroup>
       </MusicRow>
       <audio ref={audioRef} src={audioUrl} style={{ display: 'none' }} />

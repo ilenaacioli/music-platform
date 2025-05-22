@@ -45,7 +45,7 @@ export default function Playlists() {
         const user = await getUserByEmail(email)
         setUserId(user.id)
       } catch (err) {
-        console.error('Erro ao buscar playlists:', err)
+        showSnackbar('Erro ao criar playlist', 'error')
       } finally {
         setLoading(false)
       }
